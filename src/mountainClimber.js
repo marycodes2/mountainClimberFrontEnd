@@ -4,4 +4,7 @@ class MountainClimber {
     console.log("rendered")
     State.renderAll()
   }
+  static mainWindow() {
+    return document.getElementById("mainWindow")
+  }
 }

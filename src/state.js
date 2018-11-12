@@ -1,6 +1,7 @@
 class State {
   constructor(params) {
-    this.name = name
+    this.id = params.id
+    this.name = params.name
   }
 
   static renderAll(){
@@ -10,6 +11,13 @@ class State {
   }
 
   static renderStates(data) {
-    data.map(state => new State(state))
+    const states = data.map(state => new State(state))
+    states.forEach(state => state.renderState())
+  }
+
+  renderState() {
+    const nameElement = document.createElement("h2")
+    nameElement.innerText = this.name
+    MountainClimber.mainWindow().appendChild(nameElement)
   }
 }
