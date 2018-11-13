@@ -2,6 +2,7 @@ class State {
   constructor(params) {
     this.id = params.id
     this.name = params.name
+    this.locations = Location.buildLocations(params.locations)
   }
 
   static renderAll(){
@@ -12,12 +13,29 @@ class State {
 
   static renderStates(data) {
     const states = data.map(state => new State(state))
-    states.forEach(state => state.renderState())
+    states.forEach(state => state.renderStateAndLocations())
   }
 
-  renderState() {
+  renderStateAndLocations() {
+    const stateId = "state-" + this.id
+
+    const stateDiv = document.createElement('div')
+    stateDiv.id = stateId
     const nameElement = document.createElement("h2")
     nameElement.innerText = this.name
-    MountainClimber.mainWindow().appendChild(nameElement)
+
+    stateDiv.appendChild(nameElement)
+
+    const locationsList = document.createElement('ul')
+    const locationsListId = stateId + "-locations"
+    locationsList.id = locationsListId
+
+    stateDiv.appendChild(locationsList)
+
+    MountainClimber.mainWindow().appendChild(stateDiv)
+
+    this.locations.forEach(location => {
+      location.createLocationElement(this, locationsListId)
+    })
   }
 }
