@@ -6,7 +6,7 @@ class State {
   }
 
   static renderAll(){
-    fetch(BASE_URL)
+    fetch(`${BASE_URL}/locations`)
     .then(resp => resp.json())
     .then(data => State.renderStates(data))
   }
