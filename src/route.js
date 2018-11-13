@@ -8,7 +8,7 @@ class Route {
     this.longitude = params.longitude
     this.pitches = params.pitches
     this.routeType = params.route_type
-    this.reviews = []
+    this.reviews = Review.buildReviews(params.reviews)
   }
 
   static buildRoutes(routesJson) {
@@ -27,7 +27,16 @@ class Route {
       Pitches: ${this.pitches}<br />
       <img src=${this.imgMedium} class="routeImg">
     `
-
     document.getElementById(routeListId).appendChild(route)
+
+    const reviewsLi = document.createElement('ul')
+    reviewsLi.id = `route-${this.id}-reviews`
+    reviewsLi.className = 'review-list'
+    route.appendChild(reviewsLi)
+
+    this.reviews.forEach(review => {
+      review.createReviewElement(this, reviewsLi.id)
+    })
+
   }
 }
