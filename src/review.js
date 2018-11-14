@@ -227,6 +227,10 @@ class Review {
   onEditSubmit() {
     event.preventDefault()
     
+    if (document.querySelector("#review-" + this.id).querySelector("#form_errors")) {
+      document.querySelector("#review-" + this.id).querySelector("#form_errors").remove()
+    }
+
     const comment = this.editForm().children[0].children[0].value
     const reviewer = this.editForm().children[1].children[0].value
     const rating = this.editForm().children[2].children[0].value
@@ -244,9 +248,18 @@ class Review {
       .then(response => response.json())
       .then(reviewJson => {
         const newReview = new Review(reviewJson)
-        const reviewElement = newReview.editForm().parentElement.parentElement
-        MountainClimber.clearChildren(reviewElement)
-        reviewElement.appendChild(newReview.reviewInnerElement())
+        const errors = newReview.checkValidity()
+
+        if (errors.length < 1) {
+          const reviewElement = newReview.editForm().parentElement.parentElement
+          MountainClimber.clearChildren(reviewElement)
+          reviewElement.appendChild(newReview.reviewInnerElement())
+        } else {
+          const thisForm = document.querySelector("#review-" + newReview.id)
+
+          thisForm.appendChild(Review.errorMessages(errors))
+        }
+
       })
   }
 }
