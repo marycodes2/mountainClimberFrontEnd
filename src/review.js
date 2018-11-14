@@ -12,10 +12,11 @@ class Review {
     })
   }
 
-  createReviewElement(reviewListId) {
-    const review = document.createElement('li')
-    review.id = `review-${this.id}`
-    review.innerHTML = `
+  reviewInnerElement() {
+    const innerWrapper = document.createElement('div')
+    innerWrapper.id = "innerWrapper"
+
+    innerWrapper.innerHTML = `
       "${this.comments}"<br>
       - ${this.reviewer}<br>
       Rating: ${this.rating}
@@ -23,15 +24,25 @@ class Review {
     const deleteBtn = document.createElement('BUTTON')
     deleteBtn.innerText = "Delete"
     deleteBtn.addEventListener('click', this.onDeleteClick.bind(this))
-    review.appendChild(deleteBtn)
-    document.getElementById(reviewListId).appendChild(review)
+    innerWrapper.appendChild(deleteBtn)
 
     const editButton = document.createElement('BUTTON')
     editButton.innerText = "Edit"
-    review.appendChild(editButton)
+    innerWrapper.appendChild(editButton)
 
     editButton.addEventListener('click', this.onEditClick.bind(this))
-    review.appendChild(this.renderEditForm())
+    innerWrapper.appendChild(this.renderEditForm())
+
+    return innerWrapper
+  }
+
+  createReviewElement(reviewListId) {
+    const review = document.createElement('li')
+    review.id = `review-${this.id}`
+
+    review.appendChild(this.reviewInnerElement())
+
+    document.getElementById(reviewListId).appendChild(review)
   }
 
   onDeleteClick(event) {
@@ -160,6 +171,11 @@ class Review {
       body: JSON.stringify(review)
     })
       .then(response => response.json())
-      .then(reviewJson => console.log(reviewJson))
+      .then(reviewJson => {
+        const newReview = new Review(reviewJson)
+        const reviewElement = newReview.editForm().parentElement.parentElement
+        MountainClimber.clearChildren(reviewElement)
+        reviewElement.appendChild(newReview.reviewInnerElement())
+      })
   }
 }
