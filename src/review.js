@@ -4,6 +4,8 @@ class Review {
     this.reviewer = params.reviewer
     this.comments = params.comments
     this.rating = params.rating
+    this.errors = params.errors
+    this.route_id = params.route_id
   }
 
   editForm() {
@@ -79,6 +81,10 @@ class Review {
   static onReviewSubmit(event) {
     event.preventDefault()
 
+    if (event.target.querySelector("#form_errors")) {
+      event.target.querySelector("#form_errors").remove()  
+    }
+
     const comment = event.target.children[0].children[0]
     const reviewer = event.target.children[1].children[0]
     const rating = event.target.children[2].children[0]
@@ -107,9 +113,68 @@ class Review {
       .then(reviewData => {
         const reviewsList = `route-${reviewData.route_id}-reviews`
         const newReview = new Review(reviewData)
-        newReview.createReviewElement(reviewsList)
+
+        const errors = newReview.checkValidity()
+        
+        if (errors.length < 1) {
+          newReview.createReviewElement(reviewsList)
+        } else {
+          const thisForm = document.querySelector("#route-" + newReview.route_id).querySelector('form')
+
+          thisForm.children[0].children[0].value = newReview.comments
+          thisForm.children[1].children[0].value = newReview.reviewer
+          thisForm.children[2].children[0].value = newReview.rating
+
+          thisForm.appendChild(Review.errorMessages(errors))
+        }
       })
   }
+
+  static errorMessages(errors) {
+    const errorList = document.createElement('ul')
+    errorList.id = "form_errors"
+    
+
+    for(const error of errors) {
+      if(error.comments) {
+        const message = document.createElement('li')
+        message.innerText = `Comments ${error.comments}`
+        errorList.appendChild(message)
+      }
+
+      if(error.reviewer) {
+        const message = document.createElement('li')
+        message.innerText = `Reviewer ${error.reviewer}`
+        errorList.appendChild(message)
+      }
+
+      if(error.rating) {
+        const message = document.createElement('li')
+        message.innerText = `Rating ${error.rating}`
+        errorList.appendChild(message)
+      }
+    }
+    
+    return errorList
+  }
+
+  checkValidity() {
+
+    const errorArray = []
+
+    if (this.errors.rating) {
+      errorArray.push({rating: this.errors.rating})
+    }
+
+    if (this.errors.comments) {
+      errorArray.push({comments: this.errors.comments})
+    }
+
+    if (this.errors.reviewer) {
+      errorArray.push({reviewer: this.errors.reviewer})
+    }
+    return errorArray
+   }
 
   renderEditForm() {
     const form = document.createElement('form')
