@@ -6,9 +6,23 @@ class Review {
     this.rating = params.rating
   }
 
+  editForm() {
+    return document.querySelector(`#review-${this.id}-form`)
+  }
+
+  onEditClick(){
+    this.editForm().style = "display: block"
+  }
+
   static buildReviews(reviewsJson) {
     return reviewsJson.map(reviewData => {
       return new Review(reviewData)
+    })
+  }
+
+  static clearForm(inputArray) {
+    inputArray.forEach(input => {
+      input.value = ""
     })
   }
 
@@ -89,20 +103,6 @@ class Review {
         const newReview = new Review(reviewData)
         newReview.createReviewElement(reviewsList)
       })
-  }
-
-  static clearForm(inputArray) {
-    inputArray.forEach(input => {
-      input.value = ""
-    })
-  }
-
-  editForm() {
-    return document.querySelector(`#review-${this.id}-form`)
-  }
-
-  onEditClick(){
-    this.editForm().style = "display: block"
   }
 
   renderEditForm() {
