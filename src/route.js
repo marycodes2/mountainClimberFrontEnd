@@ -29,13 +29,55 @@ class Route {
     `
     document.getElementById(routeListId).appendChild(route)
 
+    const reviewForm = document.createElement('form')
+    reviewForm.dataset.route_id = this.id
+
+    const commentLabel = document.createElement('label')
+    commentLabel.innerText = "Comment: "
+    const commentField = document.createElement('input')
+    commentField.type = "text"
+    commentField.placeholder = "Your Comment Here..."
+    commentLabel.appendChild(commentField)
+
+    const reviewerLabel = document.createElement('label')
+    reviewerLabel.innerText = "Reviewer: "
+    const reviewerField = document.createElement('input')
+    reviewerField.type = "text"
+    reviewerField.placeholder = "Your Name Here..."
+    reviewerLabel.appendChild(reviewerField)
+
+    const ratingLabel = document.createElement('label')
+    ratingLabel.innerText = "Rating: "
+    const ratingField = document.createElement('input')
+    ratingField.type = "number"
+    ratingField.min = "1"
+    ratingField.max = "5"
+    ratingField.placeholder = "Your Comment Here..."
+    ratingLabel.appendChild(ratingField)
+
+    const reviewButton = document.createElement('input')
+    reviewButton.type = "submit"
+    reviewButton.value = "Submit"
+
+
+    reviewForm.appendChild(commentLabel)
+    reviewForm.appendChild(reviewerLabel)
+    reviewForm.appendChild(ratingLabel)
+    reviewForm.appendChild(reviewButton)
+
+    route.appendChild(reviewForm)
+
+    reviewForm.addEventListener('submit', event => {
+      Review.onReviewSubmit(event)
+    })
+
     const reviewsLi = document.createElement('ul')
     reviewsLi.id = `route-${this.id}-reviews`
     reviewsLi.className = 'review-list'
     route.appendChild(reviewsLi)
 
     this.reviews.forEach(review => {
-      review.createReviewElement(this, reviewsLi.id)
+      review.createReviewElement(reviewsLi.id)
     })
 
   }
