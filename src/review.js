@@ -30,7 +30,7 @@ class Review {
     editButton.innerText = "Edit"
     review.appendChild(editButton)
 
-    // editButton.addEventListener('click', this.onEditClick.bind(this))
+    editButton.addEventListener('click', this.onEditClick.bind(this))
     review.appendChild(this.renderEditForm())
   }
 
@@ -86,14 +86,18 @@ class Review {
     })
   }
 
-  onEditClick(event){
+  editForm() {
+    return document.querySelector(`#review-${this.id}-form`)
+  }
 
-    //show form
+  onEditClick(){
+    this.editForm().style = "display: block"
   }
 
   renderEditForm() {
     const form = document.createElement('form')
     form.id = `review-${this.id}-form`
+    form.style = "display:none"
 
     const commentLabel = document.createElement('label')
     commentLabel.innerText = "Comment: "
@@ -132,7 +136,30 @@ class Review {
     reviewButton.value = "Submit"
 
     form.appendChild(reviewButton)
+
+    form.addEventListener('submit', this.onEditSubmit.bind(this))
     
     return form
+  }
+
+  onEditSubmit() {
+    event.preventDefault()
+    
+    const comment = this.editForm().children[0].children[0].value
+    const reviewer = this.editForm().children[1].children[0].value
+    const rating = this.editForm().children[2].children[0].value
+    const review = new Review({id: this.id, comments: comment, reviewer: reviewer, rating:rating})
+    
+    const fetchString = `${BASE_URL}/reviews/${review.id}`
+
+    fetch(fetchString, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(review)
+    })
+      .then(response => response.json())
+      .then(reviewJson => console.log(reviewJson))
   }
 }
