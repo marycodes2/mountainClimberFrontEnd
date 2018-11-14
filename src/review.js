@@ -10,10 +10,6 @@ class Review {
     return document.querySelector(`#review-${this.id}-form`)
   }
 
-  onEditClick(){
-    this.editForm().style = "display: block"
-  }
-
   static buildReviews(reviewsJson) {
     return reviewsJson.map(reviewData => {
       return new Review(reviewData)
@@ -48,6 +44,16 @@ class Review {
     innerWrapper.appendChild(this.renderEditForm())
 
     return innerWrapper
+  }
+
+  onEditClick(){
+    if (this.editForm().style.display === "none") {
+      this.editForm().style.display = "block"
+      event.target.innerText = "Cancel"
+    } else {      
+      this.editForm().style.display = "none"
+      event.target.innerText = "Edit"
+    }
   }
 
   createReviewElement(reviewListId) {
