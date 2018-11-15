@@ -20,7 +20,7 @@ class State {
     const stateId = "state-" + this.id
 
     const stateDiv = document.createElement('div')
-    stateDiv.className = 'container'
+    stateDiv.className = 'grid-x grid-margin-x'
     stateDiv.id = stateId
     const nameElement = document.createElement("h2")
     nameElement.innerText = this.name

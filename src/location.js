@@ -14,19 +14,19 @@ class Location {
   createLocationElement(state, locationListId) {
     const locationDiv = document.createElement('div')
     locationDiv.id = `location-${this.id}`
-    locationDiv.innerText = this.name
+    locationDiv.innerHTML = `<h4>${this.name}</h4>`
 
     //this is the div that contains all routes
-    const routeDiv = document.createElement('div')
-    routeDiv.id = locationDiv.id + "-routes"
-    routeDiv.className = 'grid-container'
+    // const routeDiv = document.createElement('div')
+    // routeDiv.className = 'grid-container'
 
     const gridSizeDiv = document.createElement('div')
     gridSizeDiv.className = "grid-x grid-padding-x small-up-2 medium-up-3"
-    routeDiv.appendChild(gridSizeDiv)
+    gridSizeDiv.id = locationDiv.id + "-routes"
+    locationDiv.appendChild(gridSizeDiv)
 
 
-    locationDiv.appendChild(routeDiv)
+    // locationDiv.appendChild(routeDiv)
     document.getElementById(locationListId).appendChild(locationDiv)
 
     // const locationLi = document.createElement('li')
@@ -52,7 +52,7 @@ class Location {
     // locationLi.appendChild(routeList)
     //
     this.routes.forEach(route => {
-      gridSizeDiv.appendChild(route.createRouteElement(this, routeDiv.id))
+      gridSizeDiv.appendChild(route.createRouteElement(this, gridSizeDiv.id))
     })
 
   }
