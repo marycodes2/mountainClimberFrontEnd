@@ -58,13 +58,13 @@ class Review {
     }
   }
 
-  createReviewElement(reviewListId) {
+  createReviewElement() {
     const review = document.createElement('li')
     review.id = `review-${this.id}`
 
     review.appendChild(this.reviewInnerElement())
 
-    document.getElementById(reviewListId).appendChild(review)
+    return review
   }
 
   onDeleteClick(event) {
@@ -111,13 +111,17 @@ class Review {
     })
       .then(response => response.json())
       .then(reviewData => {
+
         const reviewsList = `route-${reviewData.route_id}-reviews`
         const newReview = new Review(reviewData)
 
         const errors = newReview.checkValidity()
 
         if (errors.length < 1) {
-          newReview.createReviewElement(reviewsList)
+          // Find the div item we want to append to
+          //Append
+          document.getElementById(reviewsList).appendChild(newReview.createReviewElement())
+
         } else {
           const thisForm = document.querySelector("#route-" + newReview.route_id).querySelector('form')
 

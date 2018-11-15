@@ -85,22 +85,21 @@ class Route {
     reviewForm.appendChild(reviewerLabel)
     reviewForm.appendChild(ratingLabel)
     reviewForm.appendChild(reviewButton)
-  //
-  //
-  //   reviewForm.addEventListener('submit', event => {
-  //     Review.onReviewSubmit(event)
-  //   })
-  //
-  //   const reviewsLi = document.createElement('ul')
-  //   reviewsLi.id = `route-${this.id}-reviews`
-  //   reviewsLi.className = 'review-list'
-  //   route.appendChild(reviewsLi)
-  //
-  //   this.reviews.forEach(review => {
-  //     review.createReviewElement(reviewsLi.id)
-  //   })
-  //
+
+    reviewForm.addEventListener('submit', event => {
+      Review.onReviewSubmit(event)
+    })
+
+    const reviewsLi = document.createElement('ul')
+    reviewsLi.id = `route-${this.id}-reviews`
+    reviewsLi.className = 'review-list'
+
+    this.reviews.forEach(review => {
+      reviewsLi.appendChild(review.createReviewElement())
+    })
+
   routeCard.appendChild(reviewForm)
+  routeCard.appendChild(reviewsLi)
 
   return routeDiv
 
