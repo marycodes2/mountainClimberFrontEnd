@@ -20,13 +20,14 @@ class Route {
   createRouteElement(location, routeListId) {
     const route = document.createElement('li')
     route.id = "route-" + this.id
-    route.className = "card col-lg-3"
+    route.className = "card col-3"
     route.innerHTML = `
-      ${this.name}<br />
-      Grade: ${this.rating}<br />
-      Style: ${this.routeType}<br />
-      Pitches: ${this.pitches}<br />
-      <img src=${this.imgMedium} class="routeImg">
+      <div> <img src=${this.imgMedium} class="routeImg"> </div>
+      <div> ${this.name} -
+      Grade: ${this.rating} -
+      Style: ${this.routeType} -
+      Pitches: ${this.pitches} -
+      </div>
     `
     document.getElementById(routeListId).appendChild(route)
 
@@ -34,14 +35,14 @@ class Route {
     reviewForm.dataset.route_id = this.id
 
     const commentLabel = document.createElement('label')
-    commentLabel.innerText = "Comment: "
+    // commentLabel.innerText = "Comment: "
     const commentField = document.createElement('input')
     commentField.type = "text"
     commentField.placeholder = "Your Comment Here..."
     commentLabel.appendChild(commentField)
 
     const reviewerLabel = document.createElement('label')
-    reviewerLabel.innerText = "Reviewer: "
+    // reviewerLabel.innerText = "Reviewer: "
     const reviewerField = document.createElement('input')
     reviewerField.type = "text"
     reviewerField.placeholder = "Your Name Here..."
