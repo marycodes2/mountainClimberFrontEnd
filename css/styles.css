@@ -12,3 +12,7 @@
 .routeCard:hover {
   box-shadow: 0 0 8px 5px rgba(0,0,0,0.4);
 }
+
+.menu-text {
+  font-size: 1.4em;
+}
