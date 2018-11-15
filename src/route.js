@@ -21,7 +21,7 @@ class Route {
     //div that contains the col, append to location row
     const routeDiv = document.createElement('div')
     routeDiv.id = "route-" + this.id
-    // routeDiv.className = "col-3"
+    routeDiv.className = "cell"
 
     //div that contains card, append to route div
     const routeCard = document.createElement('div')
