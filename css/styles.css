@@ -2,26 +2,3 @@
   list-style:none;
   font-size: 1.2em;
 }
-
-.routeImg {
-  /* width: 200px; */
-  /* display: block; */
-  width: 100%;
-  height: 200px;
-}
-
-.card {
-  width: 300px;
-  /* background-color: green; */
-  text-align: center;
-  box-shadow: 0 8px 8px 5px rgba(0,0,0,0.4);
-  border-radius: 5px;
-  margin: 10px;
-  font-size: small;
-  /* height: 400px; */
-  /* transition: 0.3s; */
-}
-
-.card:hover {
-    box-shadow: 0 16px 16px 5px rgba(0,0,0,0.8);
-}

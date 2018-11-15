@@ -7,4 +7,10 @@ class MountainClimber {
   static mainWindow() {
     return document.getElementById("mainWindow")
   }
+
+  static clearChildren(node) {
+    while(node.hasChildNodes()) {
+      node.removeChild(node.lastChild)
+    }
+  }
 }

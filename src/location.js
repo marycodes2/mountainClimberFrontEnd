@@ -12,28 +12,42 @@ class Location {
   }
 
   createLocationElement(state, locationListId) {
-    const locationLi = document.createElement('li')
-    locationLi.id = "location-" + this.id
-    locationLi.className = "location-list-item"
-    locationLi.innerText = this.name
-    const div = document.createElement('div')
-    div.className = "row"
-    locationLi.appendChild(div)
+    const locationDiv = document.createElement('div')
+    locationDiv.id = `location-${this.id}`
+    locationDiv.className = "row"
+    locationDiv.innerText = this.name
 
-    document.getElementById(locationListId).appendChild(locationLi)
+    //this is the div that contains all routes
+    const routeDiv= document.createElement('div')
+    routeDiv.id = locationDiv.id + "-routes"
 
-    const routeList = document.createElement('ul')
-    routeList.id = locationLi.id + "-routes"
-    routeList.className = "route-list-item row"
+    locationDiv.appendChild(routeDiv)
+    document.getElementById(locationListId).appendChild(locationDiv)
 
-    const routeTitle = document.createElement('h4')
-    // routeTitle.innerText = "Routes:"
-
-    locationLi.appendChild(routeTitle)
-    locationLi.appendChild(routeList)
-
+    // const locationLi = document.createElement('li')
+    // locationLi.id = "location-" + this.id
+    // locationLi.className = "location-list-item"
+    //
+    // // location name:
+    // locationLi.innerText = this.name
+    // const div = document.createElement('div')
+    // div.className = "row"
+    // locationLi.appendChild(div)
+    //
+    // document.getElementById(locationListId).appendChild(locationLi)
+    //
+    // const routeList = document.createElement('ul')
+    // routeList.id = locationLi.id + "-routes"
+    // routeList.className = "route-list-item row"
+    //
+    // const routeTitle = document.createElement('h4')
+    // // routeTitle.innerText = "Routes:"
+    //
+    // locationLi.appendChild(routeTitle)
+    // locationLi.appendChild(routeList)
+    //
     this.routes.forEach(route => {
-      route.createRouteElement(this, routeList.id)
+      routeDiv.appendChild(route.createRouteElement(this, routeDiv.id))
     })
 
   }
