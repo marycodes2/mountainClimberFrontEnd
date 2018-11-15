@@ -35,11 +35,13 @@ class Review {
     `
     const deleteBtn = document.createElement('BUTTON')
     deleteBtn.innerText = "Delete"
+    deleteBtn.className = "alert button"
     deleteBtn.addEventListener('click', this.onDeleteClick.bind(this))
     innerWrapper.appendChild(deleteBtn)
 
     const editButton = document.createElement('BUTTON')
     editButton.innerText = "Edit"
+    editButton.className = "success button"
     innerWrapper.appendChild(editButton)
 
     editButton.addEventListener('click', this.onEditClick.bind(this))
@@ -52,9 +54,11 @@ class Review {
     if (this.editForm().style.display === "none") {
       this.editForm().style.display = "block"
       event.target.innerText = "Cancel"
+      event.target.className = "secondary button"
     } else {
       this.editForm().style.display = "none"
       event.target.innerText = "Edit"
+      event.target.className = "success button"
     }
   }
 
