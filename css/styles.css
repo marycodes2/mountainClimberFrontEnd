@@ -3,10 +3,12 @@
   font-size: 1.2em;
 }
 
-.card {
-  width: 300px;
+.routeCard {
+  box-shadow: 0 0 8px 5px rgba(0,0,0,0.15);
+  border-radius: 5px;
+  /* background-color: coral; */
 }
 
-.review_header {
-  text-align: center;
+.routeCard:hover {
+  box-shadow: 0 0 8px 5px rgba(0,0,0,0.4);
 }

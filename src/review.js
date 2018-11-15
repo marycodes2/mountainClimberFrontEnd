@@ -31,18 +31,22 @@ class Review {
     innerWrapper.innerHTML = `
       "${this.comments}"<br>
       - ${this.reviewer}<br>
-      Rating: ${this.rating}
+      Rating: ${this.rating}<br />
     `
+    const buttonGroup = document.createElement('div')
+    buttonGroup.className = "expanded button-group"
+    innerWrapper.appendChild(buttonGroup)
+
     const deleteBtn = document.createElement('BUTTON')
     deleteBtn.innerText = "Delete"
     deleteBtn.className = "alert button"
     deleteBtn.addEventListener('click', this.onDeleteClick.bind(this))
-    innerWrapper.appendChild(deleteBtn)
+    buttonGroup.appendChild(deleteBtn)
 
     const editButton = document.createElement('BUTTON')
     editButton.innerText = "Edit"
     editButton.className = "success button"
-    innerWrapper.appendChild(editButton)
+    buttonGroup.appendChild(editButton)
 
     editButton.addEventListener('click', this.onEditClick.bind(this))
     innerWrapper.appendChild(this.renderEditForm())

@@ -25,7 +25,7 @@ class Route {
 
     //div that contains card, append to route div
     const routeCard = document.createElement('div')
-    routeCard.className = "card"
+    routeCard.className = "card routeCard"
     routeDiv.appendChild(routeCard)
 
     //image
