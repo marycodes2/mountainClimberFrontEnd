@@ -16,15 +16,18 @@ class Location {
     locationLi.id = "location-" + this.id
     locationLi.className = "location-list-item"
     locationLi.innerText = this.name
+    const div = document.createElement('div')
+    div.className = "row"
+    locationLi.appendChild(div)
 
     document.getElementById(locationListId).appendChild(locationLi)
 
     const routeList = document.createElement('ul')
     routeList.id = locationLi.id + "-routes"
-    routeList.className = "route-list-item"
+    routeList.className = "route-list-item row"
 
     const routeTitle = document.createElement('h4')
-    routeTitle.innerText = "Routes:"
+    // routeTitle.innerText = "Routes:"
 
     locationLi.appendChild(routeTitle)
     locationLi.appendChild(routeList)

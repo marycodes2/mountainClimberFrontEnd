@@ -20,6 +20,7 @@ class Route {
   createRouteElement(location, routeListId) {
     const route = document.createElement('li')
     route.id = "route-" + this.id
+    route.className = "card col-lg-3"
     route.innerHTML = `
       ${this.name}<br />
       Grade: ${this.rating}<br />
@@ -52,7 +53,7 @@ class Route {
     ratingField.type = "number"
     ratingField.min = "1"
     ratingField.max = "5"
-    ratingField.placeholder = "Your Comment Here..."
+    // ratingField.placeholder = "Your Comment Here..."
     ratingLabel.appendChild(ratingField)
 
     const reviewButton = document.createElement('input')

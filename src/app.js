@@ -2,7 +2,7 @@
 //set base URL constant
 const BASE_URL = 'http://localhost:3000/api/v1'
 document.addEventListener('DOMContentLoaded', () => {
+  console.log("loaded")
   const app = new MountainClimber()
   app.render()
 })
-
