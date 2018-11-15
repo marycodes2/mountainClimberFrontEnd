@@ -16,3 +16,7 @@
 .menu-text {
   font-size: 1.4em;
 }
+
+body {
+  background-color: grey;
+}
