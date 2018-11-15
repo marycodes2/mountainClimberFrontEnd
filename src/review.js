@@ -224,6 +224,7 @@ class Review {
     const reviewButton = document.createElement('input')
     reviewButton.type = "submit"
     reviewButton.value = "Submit"
+    reviewButton.className = "expanded button"
 
     form.appendChild(reviewButton)
 
