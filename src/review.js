@@ -63,6 +63,7 @@ class Review {
   }
 
   createReviewElement() {
+
     const review = document.createElement('li')
     review.id = `review-${this.id}`
 

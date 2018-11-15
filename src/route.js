@@ -35,7 +35,7 @@ class Route {
     routeCard.appendChild(image)
 
     const cardBody = document.createElement('div')
-    cardBody.className = "card-body"
+    cardBody.className = "card-section"
     routeCard.appendChild(cardBody)
 
     const cardTitle = document.createElement('h5')
@@ -91,6 +91,19 @@ class Route {
       Review.onReviewSubmit(event)
     })
 
+    if (this.reviews.length > 0) {
+      const reviewDivider = document.createElement('div')
+      reviewDivider.className = "card-divider review_header"
+      reviewDivider.innerHTML = "<h5>Reviews</h5>"
+      routeCard.appendChild(reviewDivider)
+
+    }
+
+
+    const reviewListContainer = document.createElement('div')
+    reviewListContainer.className = "card-section"
+    routeCard.appendChild(reviewListContainer)
+
     const reviewsLi = document.createElement('ul')
     reviewsLi.id = `route-${this.id}-reviews`
     reviewsLi.className = 'review-list'
@@ -99,8 +112,8 @@ class Route {
       reviewsLi.appendChild(review.createReviewElement())
     })
 
-  routeCard.appendChild(reviewForm)
-  routeCard.appendChild(reviewsLi)
+  cardBody.appendChild(reviewForm)
+  reviewListContainer.appendChild(reviewsLi)
 
   return routeDiv
 
