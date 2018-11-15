@@ -10,11 +10,13 @@
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <div class="top-bar">
-      <div class "top-bar-left">
-        <ul class="dropdown menu" data-dropdown-menu>
-          <li class="menu-text">Mountain Climber</li>
-        </ul>
+    <div data-sticky-container>
+      <div class="top-bar" data-sticky data-options= "marginTop:0;">
+        <div class "top-bar-left">
+          <ul class="dropdown menu" data-dropdown-menu>
+            <li class="menu-text">Mountain Climber</li>
+          </ul>
+        </div>
       </div>
     </div>
     <div id="mainWindow" class="grid-container"></div>
@@ -24,5 +26,9 @@
     <script src="src/location.js"></script>
     <script src="src/route.js"></script>
     <script src="src/review.js"></script>
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>

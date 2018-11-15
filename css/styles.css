@@ -18,5 +18,24 @@
 }
 
 body {
-  background-color: grey;
+  /* background-color: grey; */
+  background-image: url(../smithRockBlurred.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100%;
+}
+
+#mainWindow {
+  background-color: rgba(255, 255, 255, 0.4);
+
+  /* opacity: .2; */
+}
+
+.top-bar {
+  background-color: #3d3d3d;
+}
+
+.menu .menu-text {
+  background-color: #3d3d3d;
+  color: #d8d8d8
 }
