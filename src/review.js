@@ -29,9 +29,11 @@ class Review {
     innerWrapper.id = "innerWrapper"
 
     innerWrapper.innerHTML = `
-      "${this.comments}"<br>
-      - ${this.reviewer}<br>
-      Rating: ${this.rating}<br />
+      <blockquote>"${this.comments}"<br />
+      <small>Reviewer's Rating: ${this.rating}</small>
+      <cite>${this.reviewer}</cite>
+      </blockquote>
+      <br />
     `
     const buttonGroup = document.createElement('div')
     buttonGroup.className = "expanded button-group"
@@ -68,10 +70,11 @@ class Review {
 
   createReviewElement() {
 
-    const review = document.createElement('li')
+    const review = document.createElement('div')
     review.id = `review-${this.id}`
 
     review.appendChild(this.reviewInnerElement())
+    review.appendChild(document.createElement('hr'))
 
     return review
   }
@@ -85,6 +88,12 @@ class Review {
   deleteFromPage() {
     const reviewId = `review-${this.id}`
     document.getElementById(reviewId).remove()
+
+    if(document.getElementById(`route-${this.route_id}-reviews`).children.length === 0){
+      document.getElementById(`route-${this.route_id}`).querySelector(".review_header").style.display = "none"
+      document.getElementById(`route-${this.route_id}`).querySelectorAll(".card-section")[1].style.display = "none"
+
+    }
   }
 
   static onReviewSubmit(event) {
@@ -130,6 +139,8 @@ class Review {
           // Find the div item we want to append to
           //Append
           document.getElementById(reviewsList).appendChild(newReview.createReviewElement())
+          document.getElementById(`route-${newReview.route_id}`).querySelector(".review_header").style.display = "block"
+          document.getElementById(`route-${newReview.route_id}`).querySelectorAll(".card-section")[1].style.display = "block"
 
         } else {
           const thisForm = document.querySelector("#route-" + newReview.route_id).querySelector('form')
