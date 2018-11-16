@@ -44,3 +44,25 @@ body {
 blockquote {
   border-left: none;
 }
+
+.accordion {
+  background-color: transparent;
+}
+
+.accordion-title {
+  color: white;
+  border: none;
+}
+
+.accordion-title:hover {
+  background-color: transparent;
+  color: #73beeb;
+}
+
+h2 {
+  color: #73beeb;
+}
+
+h4 {
+  color: #D5e3eb;
+}
