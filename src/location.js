@@ -21,7 +21,7 @@ class Location {
     // routeDiv.className = 'grid-container'
 
     const gridSizeDiv = document.createElement('div')
-    gridSizeDiv.className = "grid-x grid-padding-x small-up-2 medium-up-3"
+    gridSizeDiv.className = "grid-x grid-padding-x small-up-1 medium-up-3"
     gridSizeDiv.id = locationDiv.id + "-routes"
     locationDiv.appendChild(gridSizeDiv)
 
