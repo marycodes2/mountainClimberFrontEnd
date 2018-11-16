@@ -89,7 +89,7 @@ class Review {
     const reviewId = `review-${this.id}`
     document.getElementById(reviewId).remove()
 
-    if(document.getElementById(`route-${this.id}-reviews`).children.length === 0){
+    if(document.getElementById(`route-${this.route_id}-reviews`).children.length === 0){
       document.getElementById(`route-${this.route_id}`).querySelector(".review_header").style.display = "none"
       document.getElementById(`route-${this.route_id}`).querySelectorAll(".card-section")[1].style.display = "none"
 
