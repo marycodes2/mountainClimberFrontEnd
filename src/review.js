@@ -29,9 +29,11 @@ class Review {
     innerWrapper.id = "innerWrapper"
 
     innerWrapper.innerHTML = `
-      "${this.comments}"<br>
-      - ${this.reviewer}<br>
-      Rating: ${this.rating}<br />
+      <blockquote>"${this.comments}"<br />
+      <small>Reviewer's Rating: ${this.rating}</small>
+      <cite>${this.reviewer}</cite>
+      </blockquote>
+      <br />
     `
     const buttonGroup = document.createElement('div')
     buttonGroup.className = "expanded button-group"
@@ -68,10 +70,11 @@ class Review {
 
   createReviewElement() {
 
-    const review = document.createElement('li')
+    const review = document.createElement('div')
     review.id = `review-${this.id}`
 
     review.appendChild(this.reviewInnerElement())
+    review.appendChild(document.createElement('hr'))
 
     return review
   }

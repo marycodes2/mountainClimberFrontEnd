@@ -108,7 +108,7 @@ class Route {
       reviewListContainer.style.display = "block"
     }
 
-    const reviewsLi = document.createElement('ul')
+    const reviewsLi = document.createElement('div')
     reviewsLi.id = `route-${this.id}-reviews`
     reviewsLi.className = 'review-list'
 
