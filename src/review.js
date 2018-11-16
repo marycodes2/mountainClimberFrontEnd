@@ -85,6 +85,12 @@ class Review {
   deleteFromPage() {
     const reviewId = `review-${this.id}`
     document.getElementById(reviewId).remove()
+
+    if(document.getElementById(`route-${this.id}-reviews`).children.length === 0){
+      document.getElementById(`route-${this.route_id}`).querySelector(".review_header").style.display = "none"
+      document.getElementById(`route-${this.route_id}`).querySelectorAll(".card-section")[1].style.display = "none"
+
+    }
   }
 
   static onReviewSubmit(event) {
@@ -130,6 +136,8 @@ class Review {
           // Find the div item we want to append to
           //Append
           document.getElementById(reviewsList).appendChild(newReview.createReviewElement())
+          document.getElementById(`route-${newReview.route_id}`).querySelector(".review_header").style.display = "block"
+          document.getElementById(`route-${newReview.route_id}`).querySelectorAll(".card-section")[1].style.display = "block"
 
         } else {
           const thisForm = document.querySelector("#route-" + newReview.route_id).querySelector('form')

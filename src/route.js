@@ -91,18 +91,22 @@ class Route {
       Review.onReviewSubmit(event)
     })
 
-    if (this.reviews.length > 0) {
-      const reviewDivider = document.createElement('div')
-      reviewDivider.className = "card-divider review_header"
-      reviewDivider.innerHTML = "<h5>Reviews</h5>"
-      routeCard.appendChild(reviewDivider)
 
-    }
-
+    const reviewDivider = document.createElement('div')
+    reviewDivider.className = "card-divider review_header"
+    reviewDivider.innerHTML = "<h5>Reviews</h5>"
+    reviewDivider.style.display = "none"
+    routeCard.appendChild(reviewDivider)
 
     const reviewListContainer = document.createElement('div')
     reviewListContainer.className = "card-section"
+    reviewListContainer.style.display = "none"
     routeCard.appendChild(reviewListContainer)
+
+    if (this.reviews.length > 0) {
+      reviewDivider.style.display = "block"
+      reviewListContainer.style.display = "block"
+    }
 
     const reviewsLi = document.createElement('ul')
     reviewsLi.id = `route-${this.id}-reviews`
